@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use App\Student;
 
 class AdminController extends Controller
 {
@@ -24,6 +26,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $data = Student::all();
+        return view('admin.home')->with('students',$data);
     }
 }

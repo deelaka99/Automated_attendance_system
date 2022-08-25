@@ -3,6 +3,7 @@
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Student;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,4 +38,11 @@ Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showRes
 Route::GET('admin/register','Admin\RegisterController@showRegistrationForm')->name('admin.register');
 Route::POST('admin/register','Admin\RegisterController@register');
 
-//other
+//student
+Route::POST('storeStudents','StudentController@store');
+
+//qrcode
+Route::GET('admin/qrcode',function(){
+    view('admin.qrcode');
+});
+

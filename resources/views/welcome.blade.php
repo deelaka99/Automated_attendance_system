@@ -84,7 +84,9 @@
                     @if (Auth::check())
                     @else
                         <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>                       
+                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/admin/login') }}">Login as Admin</a> 
+                        <a href="{{ url('/admin/register') }}">Register as Admin</a>                      
                     @endif
                  @endif
                 </div>
