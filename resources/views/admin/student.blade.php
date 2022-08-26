@@ -50,24 +50,44 @@
                                 <p style="text-align:center">Enter the details of the new student</p>
                             </div>
                             <div class="panel-body">
+                                <div>
+                                    @foreach($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$error}}
+                                    </div>
+                                    @endforeach
+                                </div>
                                 <form action="{{url('admin/student/store')}}" method="post">
                                 {!! csrf_field() !!}
                                     <div class="form-group">
                                         <label>First Name </label>
-                                        <input type="text" name="fname" class="form-control" placeholder="Enter first name">
+                                        <input type="text" name="fname" class="form-control" placeholder="Enter your first name">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name </label>
-                                        <input type="text" name="lname" class="form-control" placeholder="Enter last name">
+                                        <input type="text" name="lname" class="form-control" placeholder="Enter your last name">
                                     </div>
                                     <div class="form-group">
                                         <label>Registration no </label>
-                                        <input type="text" name="regno" class="form-control" placeholder="Enter registration no">
+                                        <input type="text" name="regno" class="form-control" placeholder="Enter your registration no">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email </label>
+                                        <input type="text" name="email" class="form-control" placeholder="Enter your email adress">
                                     </div>
                                     <div class="form-group">
                                         <label>Speciality </label>
-                                        <input type="text" name="speciality" class="form-control" placeholder="Enter speciality">
+                                        <input type="text" name="speciality" class="form-control" placeholder="Enter your speciality">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Password </label>
+                                        <input type="password" name="pw" class="form-control" placeholder="Enter your new password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm Password </label>
+                                        <input type="password" name="cpw" class="form-control" placeholder="Enter your new confirm password">
+                                    </div>
+
                                     <input type="submit" class="btn btn-primary" value="Save">
                                     <input type="button" class="btn btn-warning" value="Reset">
                                 </form>
@@ -94,23 +114,42 @@
                                 <p style="text-align:center">Enter the details of the student</p>
                             </div>
                             <div class="panel-body">
+                                <div>
+                                    @foreach($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$error}}
+                                    </div>
+                                    @endforeach
+                                </div>
                                 <form action="{{url('admin/student/update/'.$student->id)}}" method="post">
                                 {!! csrf_field() !!}
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label>First Name </label>
-                                        <input type="text" name="fname" class="form-control" placeholder="Enter first name">
+                                        <input type="text" name="fname" class="form-control" placeholder="Enter your first name">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name </label>
-                                        <input type="text" name="lname" class="form-control" placeholder="Enter last name">
+                                        <input type="text" name="lname" class="form-control" placeholder="Enter your last name">
                                     </div>
                                     <div class="form-group">
                                         <label>Registration no </label>
-                                        <input type="text" name="regno" class="form-control" placeholder="Enter registration no">
+                                        <input type="text" name="regno" class="form-control" placeholder="Enter your registration no">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email </label>
+                                        <input type="text" name="email" class="form-control" placeholder="Enter your email adress">
                                     </div>
                                     <div class="form-group">
                                         <label>Speciality </label>
-                                        <input type="text" name="speciality" class="form-control" placeholder="Enter speciality">
+                                        <input type="text" name="speciality" class="form-control" placeholder="Enter your speciality">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password </label>
+                                        <input type="password" name="pw" class="form-control" placeholder="Enter your new password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm Password </label>
+                                        <input type="password" name="cpw" class="form-control" placeholder="Enter your new confirm password">
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="Update">
                                     <input type="button" class="btn btn-warning" value="Reset">

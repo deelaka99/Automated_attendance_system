@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -44,20 +45,25 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'fname'=>'required|max:100|min:3',
-            'lname'=>'required|max:100|min:3',
-            'regno'=>'required|max:10|min:9',
-            'speciality'=>'required|max:100|min:3',
+             'fname' => 'required|string|max:100',
+             'lname' => 'required|string|max:100',
+             'regno' => 'required|string|max:10|min:9',
+             'speciality' => 'required|string|max:25',
+             'email' => 'required|string|email|max:100',
+             'pw' => 'required|string|max:10|min:6',
+             'cpw' => 'required|string|max:10|min:6',
         ]);
-        //dd($request->all());
+        
         $student = new Student();
         
         $student->f_name = $request->input('fname');
         $student->l_name = $request->input('lname');
         $student->reg_no = $request->input('regno');
         $student->speciality = $request->input('speciality');
-        
-        //dd($data);
+        $student->email = $request->input('email');
+        $student->password = Hash::make($request->input('pw'));
+
+        //dd($request->all());
         $student->save();
         return view('admin.home');
     }
@@ -97,11 +103,23 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'fname' => 'required|string|max:100',
+            'lname' => 'required|string|max:100',
+            'regno' => 'required|string|max:10|min:9',
+            'speciality' => 'required|string|max:25',
+            'email' => 'required|string|email|max:100',
+            'pw' => 'required|string|max:10|min:6',
+            'cpw' => 'required|string|max:10|min:6',
+       ]);
+
         $student=Student::find($id);
         $student->f_name = $request->input('fname');
         $student->l_name = $request->input('lname');
         $student->reg_no = $request->input('regno');
         $student->speciality = $request->input('speciality');
+        $student->email = $request->input('email');
+        $student->password = Hash::make($request->input('pw'));
         $student->save();
         return view('admin.home');
     }
