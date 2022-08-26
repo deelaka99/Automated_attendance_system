@@ -20,7 +20,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return view('student',['students'=>$students,'layout'=>'index']);
+        return view('admin.student',['students'=>$students,'layout'=>'index']);
+        ;
     }
 
     /**
@@ -31,7 +32,7 @@ class StudentController extends Controller
     public function create()
     {
         $students = Student::all();
-        return view('student',['students'=>$students,'layout'=>'create']);
+        return view('admin.student',['students'=>$students,'layout'=>'create']);
     }
 
     /**
@@ -57,11 +58,8 @@ class StudentController extends Controller
         $student->speciality = $request->input('speciality');
         
         //dd($data);
-        $data = Student::all();
         $student->save();
-        return view('admin.home')->with('students',$data);
-        
-        
+        return view('admin.home');
     }
 
     /**
@@ -74,7 +72,7 @@ class StudentController extends Controller
     {
         $student=Student::find($id);
         $students=Student::all();
-        return view('student',['students'=>$students,'student'=>$student,'layout'=>'show']);
+        return view('admin.student',['students'=>$students,'student'=>$student,'layout'=>'show']);
     }
 
     /**
@@ -87,7 +85,7 @@ class StudentController extends Controller
     {
         $student=Student::find($id);
         $students=Student::all();
-        return view('student',['students'=>$students,'student'=>$student,'layout'=>'edit']);
+        return view('admin.student',['students'=>$students,'student'=>$student,'layout'=>'edit']);
     }
 
     /**
@@ -101,11 +99,11 @@ class StudentController extends Controller
     {
         $student=Student::find($id);
         $student->f_name = $request->input('fname');
-        $student->l_ame = $request->input('lname');
+        $student->l_name = $request->input('lname');
         $student->reg_no = $request->input('regno');
         $student->speciality = $request->input('speciality');
         $student->save();
-        return redirect('/admin/home');
+        return view('admin.home');
     }
 
     /**
@@ -118,6 +116,18 @@ class StudentController extends Controller
     {
         $student=Student::find($id);
         $student->delete();
-        return redirect('/');
+        return view('admin.home');
+    }
+
+    public function updatestatus($id){
+        $student=Student::find($id);
+        if($student->activate_or_not){
+            $student->activate_or_not = false;
+        }else{
+            $student->activate_or_not = true;
+        }
+        $student->save();
+        return view('admin.home');
+
     }
 }

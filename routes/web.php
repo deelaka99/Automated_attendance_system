@@ -38,11 +38,17 @@ Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showRes
 Route::GET('admin/register','Admin\RegisterController@showRegistrationForm')->name('admin.register');
 Route::POST('admin/register','Admin\RegisterController@register');
 
-//student
-Route::POST('storeStudents','StudentController@store');
-
 //qrcode
-Route::GET('admin/qrcode',function(){
-    view('admin.qrcode');
-});
+Route::GET('admin/student/addqrcode','QrcodeController@index');
 
+//student
+Route::POST('admin/student/store','StudentController@store');
+Route::GET('admin/student/create','StudentController@create');
+Route::GET('admin/student/index','StudentController@index');
+Route::GET('admin/student/edit/{id}','StudentController@edit');
+Route::GET('admin/student/show/{id}','StudentController@show');
+Route::POST('admin/student/update/{id}','StudentController@update');
+Route::GET('admin/student/delete/{id}','StudentController@destroy');
+Route::GET('admin/student/status/{id}','StudentController@updatestatus');
+
+ 

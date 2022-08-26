@@ -75,6 +75,9 @@
             @endif
 
             <div class="content">
+                <div style="font-size:x-large;">
+                    Welcome
+                </div>
                 <div class="title m-b-md">
                     Automated Attendance System
                 </div>
@@ -82,11 +85,12 @@
                 <div class="links">
                 @if (Route::has('login'))
                     @if (Auth::check())
+                        <a href="{{ URL::previous() }}" class="btn btn-primary">Back to Dashboard</a>  
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
                         <a href="{{ url('/admin/login') }}">Login as Admin</a> 
-                        <a href="{{ url('/admin/register') }}">Register as Admin</a>                      
+                        <a href="{{ url('/admin/register') }}">Register as Admin</a>                
                     @endif
                  @endif
                 </div>
